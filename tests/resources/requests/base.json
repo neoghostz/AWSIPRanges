@@ -1,0 +1,78 @@
+{
+    "transformId": "012345678901::AWSIPRanges",
+    "templateParameterValues": {
+        "VPCid": "vpc-01234567890123546789012345687901"
+    },
+    "fragment": {
+        "AWSTemplateFormatVersion": "2010-09-09T00:00:00.000Z",
+        "Description": "AWS IP Ranges Template",
+        "Parameters": {
+            "VPCid": {
+                "Type": "String",
+                "Description": "VPCid"
+            }
+        },
+        "Mappings": {},
+        "Resources": {
+            "WebAWSIPRanges": {
+                "Type": "ElendelOSS::Network::AWSIPranges",
+                "Properties": {
+                    "Name": "Web",
+                    "Regions": [
+                        "ap-southeast-1",
+                        "ap-southeast-2"
+                    ],
+                    "Services": [
+                        "AMAZON",
+                        "CLOUDFRONT",
+                        "EC2"
+                    ],
+                    "SecurityGroupIngress": [
+                        [
+                            "icmp",
+                            -1,
+                            -1,
+                            "All ICMP Traffic"
+                        ],
+                        [
+                            6,
+                            80,
+                            80,
+                            "HTTP"
+                        ],
+                        [
+                            6,
+                            443,
+                            443,
+                            "HTTPS"
+                        ]
+                    ],
+                    "SecurityGroupEgress": [
+                        [
+                            "icmp",
+                            -1,
+                            -1,
+                            "All ICMP Traffic"
+                        ],
+                        [
+                            6,
+                            53,
+                            53,
+                            "TCP DNS"
+                        ],
+                        [
+                            17,
+                            53,
+                            53,
+                            "UDP DNS"
+                        ]
+                    ]
+                }
+            }
+        }
+    },
+    "region": "ap-southeast-2",
+    "params": {},
+    "requestId": "abcdefgh-1234-4567-8901-abcdefgh0123",
+    "accountId": "012345678901"
+}

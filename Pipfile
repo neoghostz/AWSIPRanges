@@ -1,0 +1,23 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+mock = "*"
+pytest = "*"
+pytest-cov = "*"
+cfn-lint = "*"
+pycodestyle = "*"
+invoke = "*"
+pygithub = "*"
+flake8 = "*"
+
+[packages]
+boto3 = "*"
+botocore = "*"
+troposphere = "*"
+requests = "*"
+
+[requires]
+python_version = "3.9"
