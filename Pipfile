@@ -10,12 +10,9 @@ pytest-cov = "*"
 cfn-lint = "*"
 pycodestyle = "*"
 invoke = "*"
-pygithub = "*"
 flake8 = "*"
 
 [packages]
-boto3 = "*"
-botocore = "*"
 troposphere = "*"
 requests = "*"
 
