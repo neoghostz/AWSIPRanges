@@ -1,0 +1,5 @@
+{
+    "requestId": "abcdefgh-1234-4567-8901-abcdefgh0123",
+    "errorMessage": "Missing Parameters: ['VpcId']",
+    "status": "failure"
+}

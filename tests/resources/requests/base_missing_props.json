@@ -21,9 +21,6 @@
                     "Regions": [
                         "ap-southeast-2"
                     ],
-                    "Services": [
-                        "CLOUDFRONT"
-                    ],
                     "SecurityGroupIngress": [
                         [
                             "icmp",

@@ -1,16 +1,11 @@
 {
     "transformId": "012345678901::AWSIPRanges",
     "templateParameterValues": {
-        "VpcId": "vpc-01234567890123546789012345687901"
     },
     "fragment": {
         "AWSTemplateFormatVersion": "2010-09-09T00:00:00.000Z",
         "Description": "AWS IP Ranges Template",
         "Parameters": {
-            "VpcId": {
-                "Type": "String",
-                "Description": "VpcId"
-            }
         },
         "Mappings": {},
         "Resources": {

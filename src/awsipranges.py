@@ -1,9 +1,8 @@
 import requests
 from requests.exceptions import HTTPError
-from collections import defaultdict
 import logging
 import os
-import json
+
 
 class AWSIPRanges():
     def __init__(self):
@@ -27,9 +26,9 @@ class AWSIPRanges():
 
     def parse_ip_ranges(self) -> None:
         for prefix in self.aws_ip_ranges.get('prefixes'):
-            self.by_service.setdefault(prefix['service'], {}).setdefault(prefix['region'], []).extend(prefix['ip_prefix'])
-            self.by_region.setdefault(prefix['region'], {}).setdefault(prefix['service'], []).extend(prefix['ip_prefix'])
+            self.by_service.setdefault(prefix['service'], {}).setdefault(prefix['region'], []).append(prefix['ip_prefix'])
+            self.by_region.setdefault(prefix['region'], {}).setdefault(prefix['service'], []).append(prefix['ip_prefix'])
 
         for prefix in self.aws_ip_ranges.get('ipv6_prefixes'):
-            self.by_service.setdefault(prefix['service'], {}).setdefault(prefix['region'], []).extend(prefix['ipv6_prefix'])
-            self.by_region.setdefault(prefix['region'], {}).setdefault(prefix['service'], []).extend(prefix['ipv6_prefix'])
+            self.by_service.setdefault(prefix['service'], {}).setdefault(prefix['region'], []).append(prefix['ipv6_prefix'])
+            self.by_region.setdefault(prefix['region'], {}).setdefault(prefix['service'], []).append(prefix['ipv6_prefix'])

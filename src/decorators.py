@@ -5,6 +5,7 @@ logging.basicConfig(format='%(asctime)s [%(levelname)s] (%(funcName)s) %(message
 logger = logging.getLogger('Builder.decorator')
 logger.setLevel(int(os.environ.get('Logging', logging.DEBUG)))
 
+
 def func_call_logger(func):
     def logger_wrapper(*args, **kwargs):
         logger.info(f'Calling {str(func)}')

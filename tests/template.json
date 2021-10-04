@@ -1,0 +1,128 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09T00:00:00.000Z",
+    "Description": "AWS IP Ranges Template",
+    "Mappings": {},
+    "Outputs": {
+        "Web": {
+            "Description": "Sec Group: Web built by AWSIPRanges",
+            "Export": {
+                "Name": {
+                    "Fn::Sub": "${AWS::StackName}-SecGroup-Web"
+                }
+            },
+            "Value": {
+                "Ref": "Web"
+            }
+        }
+    },
+    "Parameters": {
+        "VpcId": {
+            "Description": "VpcId",
+            "Type": "String"
+        }
+    },
+    "Resources": {
+        "Web": {
+            "Properties": {
+                "GroupDescription": "Sec Group: Web built by AWSIPRanges",
+                "GroupName": "Web",
+                "SecurityGroupEgress": [
+                    {
+                        "CidrIp": "13.210.67.128/26",
+                        "Description": "All ICMP Traffic",
+                        "FromPort": -1,
+                        "IpProtocol": "icmp",
+                        "ToPort": -1
+                    },
+                    {
+                        "CidrIp": "13.210.67.128/26",
+                        "Description": "TCP DNS",
+                        "FromPort": 53,
+                        "IpProtocol": "tcp",
+                        "ToPort": 53
+                    },
+                    {
+                        "CidrIp": "13.210.67.128/26",
+                        "Description": "UDP DNS",
+                        "FromPort": 53,
+                        "IpProtocol": "udp",
+                        "ToPort": 53
+                    },
+                    {
+                        "CidrIp": "13.54.63.128/26",
+                        "Description": "All ICMP Traffic",
+                        "FromPort": -1,
+                        "IpProtocol": "icmp",
+                        "ToPort": -1
+                    },
+                    {
+                        "CidrIp": "13.54.63.128/26",
+                        "Description": "TCP DNS",
+                        "FromPort": 53,
+                        "IpProtocol": "tcp",
+                        "ToPort": 53
+                    },
+                    {
+                        "CidrIp": "13.54.63.128/26",
+                        "Description": "UDP DNS",
+                        "FromPort": 53,
+                        "IpProtocol": "udp",
+                        "ToPort": 53
+                    }
+                ],
+                "SecurityGroupIngress": [
+                    {
+                        "CidrIp": "13.210.67.128/26",
+                        "Description": "All ICMP Traffic",
+                        "FromPort": -1,
+                        "IpProtocol": "icmp",
+                        "ToPort": -1
+                    },
+                    {
+                        "CidrIp": "13.210.67.128/26",
+                        "Description": "HTTP",
+                        "FromPort": 80,
+                        "IpProtocol": "tcp",
+                        "ToPort": 80
+                    },
+                    {
+                        "CidrIp": "13.210.67.128/26",
+                        "Description": "HTTPS",
+                        "FromPort": 443,
+                        "IpProtocol": "tcp",
+                        "ToPort": 443
+                    },
+                    {
+                        "CidrIp": "13.54.63.128/26",
+                        "Description": "All ICMP Traffic",
+                        "FromPort": -1,
+                        "IpProtocol": "icmp",
+                        "ToPort": -1
+                    },
+                    {
+                        "CidrIp": "13.54.63.128/26",
+                        "Description": "HTTP",
+                        "FromPort": 80,
+                        "IpProtocol": "tcp",
+                        "ToPort": 80
+                    },
+                    {
+                        "CidrIp": "13.54.63.128/26",
+                        "Description": "HTTPS",
+                        "FromPort": 443,
+                        "IpProtocol": "tcp",
+                        "ToPort": 443
+                    }
+                ],
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "Web"
+                    }
+                ],
+                "VpcId": "vpc-01234567890123546789012345687901"
+            },
+            "Type": "AWS::EC2::SecurityGroup"
+        }
+    }
+}
