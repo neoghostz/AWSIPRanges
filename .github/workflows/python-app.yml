@@ -35,3 +35,5 @@ jobs:
     - name: Test with pytest
       run: |
         PYTHONPATH=.:./src pytest --cov=src --cov-branch --cov-report term-missing ./tests
+    - uses: aws-actions/setup-sam@v1
+    - run: sam build --use-container -t .sam/transform.yaml -m ./requirements.txt ./build -s .
