@@ -31,7 +31,7 @@ jobs:
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
-        flake8 flake8 ./src --statistics
+        flake8 ./src --statistics
     - name: Test with pytest
       run: |
         PYTHONPATH=.:./src pytest --cov=src --cov-branch --cov-report term-missing ./tests
