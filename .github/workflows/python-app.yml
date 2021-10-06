@@ -39,14 +39,14 @@ jobs:
     - run: sam build --use-container -t .sam/transform.yaml -m ./requirements.txt -b ./build -s .
     - name: Build project # This would actually build your project, using zip for an example artifact
       run: |
-        zip -r9 (cat VERSION).$GITHUB_SHA.zip ./build/*
+        zip -r9 $(cat VERSION).$GITHUB_SHA.zip ./build/*
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
-        tag_name: (cat VERSION).$GITHUB_SHA
+        tag_name: $(cat VERSION).$GITHUB_SHA
         release_name: Release (cat VERSION).$GITHUB_SHA
         draft: false
         prerelease: false
@@ -57,6 +57,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-        asset_path: ./(cat VERSION).$GITHUB_SHA.zip
-        asset_name: (cat VERSION).$GITHUB_SHA.zip
+        asset_path: ./$(cat VERSION).$GITHUB_SHA.zip
+        asset_name: $(cat VERSION).$GITHUB_SHA.zip
         asset_content_type: application/zip
