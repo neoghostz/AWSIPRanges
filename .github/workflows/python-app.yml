@@ -35,9 +35,8 @@ jobs:
     - name: Test with pytest
       run: |
         PYTHONPATH=.:./src pytest --cov=src --cov-branch --cov-report term-missing ./tests
-    - name: Build SAM Application
-      uses: aws-actions/setup-sam@v1
-      run: sam build --use-container -t .sam/transform.yaml -m ./requirements.txt -b ./build -s .
+    - uses: aws-actions/setup-sam@v1
+    - run: sam build --use-container -t .sam/transform.yaml -m ./requirements.txt -b ./build -s .
     - name: Build project # This would actually build your project, using zip for an example artifact
       run: |
         zip -r9 ${{ github.ref }}.zip ./build/*
