@@ -44,19 +44,20 @@ jobs:
     - uses: aws-actions/setup-sam@v1
     - run: sam build --use-container -t .sam/transform.yaml -m ./requirements.txt -b ./build -s .
 
-    - name: Craft Version
+    - name: Craft Params
       run: |
         echo "::set-output name=VERSION::$(cat VERSION)"
-      id: version
+        echo "::set-output name=SHORT_SHA::$(git rev-parse --short HEAD | cut -c 1-7)"
+      id: params
 
     - name: Build project # This would actually build your project, using zip for an example artifact
       run: |
-        cd build && zip -r9 ../${{ steps.version.outputs.VERSION }}.${GITHUB_SHA}.zip *
+        cd build && zip -r9 ../${{ steps.version.outputs.VERSION }}.${{ steps.params.outputs.SHORT_SHA }}.zip *
 
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         prerelease: false
-        automatic_release_tag: v.${{ steps.version.outputs.VERSION }}.${GITHUB_SHA}
+        automatic_release_tag: v.${{ steps.version.outputs.VERSION }}.${{ steps.params.outputs.SHORT_SHA }}
         files: |
-          ${{ steps.version.outputs.VERSION }}.${GITHUB_SHA}.zip
+          ${{ steps.params.outputs.VERSION }}.${{ steps.params.outputs.SHORT_SHA }}.zip
